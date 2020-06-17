@@ -1,8 +1,22 @@
+buildscript {    // Configuration for building
+	repositories {
+		jcenter()    // Bintray's repository - a fast Maven Central mirror & more
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'com.google.cloud.tools:appengine-gradle-plugin:2.2.0' // If a newer version is available, use it
+	}
+}
+
+
 plugins {
 	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'war'
 }
+
+apply plugin: "com.google.cloud.tools.appengine"
 
 group = 'io.clinix'
 version = '0.0.1-SNAPSHOT'
@@ -22,6 +36,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-gcp-starter'
+	implementation 'org.springframework.cloud:spring-cloud-gcp-starter-sql-mysql'
+
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -32,6 +48,13 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+appengine {  // App Engine tasks configuration
+	deploy {   // deploy configuration
+		projectId = 'clinix-280615'
+		version = '1'
 	}
 }
 
