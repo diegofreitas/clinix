@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource(collectionResourceRel = "patient", path = "patient")
+@RepositoryRestResource(collectionResourceRel = "patient", path = "patients")
 public interface PatientRepository extends PagingAndSortingRepository<Patient, Long> {
 
     List<Patient> findByName(@Param("name") String name);
