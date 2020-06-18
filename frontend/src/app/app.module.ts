@@ -25,13 +25,16 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { AppointmentComponent } from './components/appointment/appointment.component';
+import { AppointmentService } from './services/appointment.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
     FormsModule,
     FlexLayoutModule
   ],
-  providers: [AuthService,
+  providers: [AuthService, AppointmentService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
