@@ -31,7 +31,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    // Secure the endpoins with HTTP Basic authentication
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -39,10 +38,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/**").hasRole("USER")
-                .antMatchers(HttpMethod.PUT, "/api/**").hasRole("USER")
-                .antMatchers(HttpMethod.DELETE, "/api/**").hasRole("USER")
-                .antMatchers(HttpMethod.POST, "/api/**").hasRole("USER")
+                .antMatchers(HttpMethod.GET, "/**").hasRole("USER")
+                .antMatchers(HttpMethod.PUT, "/**").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/**").hasRole("USER")
+                .antMatchers(HttpMethod.POST, "/**").hasRole("USER")
+                .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .and()
                 .csrf().disable()
                 .formLogin().disable();
