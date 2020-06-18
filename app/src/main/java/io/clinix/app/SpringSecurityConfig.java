@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 import javax.sql.DataSource;
 
@@ -20,12 +21,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    private JdbcUserDetailsManager jdbcUserDetailsManager;
+
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource);
+        jdbcUserDetailsManager = (JdbcUserDetailsManager) auth.getDefaultUserDetailsService();
     }
 
+    @Bean
+    public JdbcUserDetailsManager jdbcUserDetailsManager() {
+        return jdbcUserDetailsManager;
+    }
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -37,12 +45,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 //HTTP Basic authentication
                 .httpBasic()
                 .and()
+
                 .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/register-account").permitAll()
                 .antMatchers(HttpMethod.GET, "/**").hasRole("USER")
                 .antMatchers(HttpMethod.PUT, "/**").hasRole("USER")
                 .antMatchers(HttpMethod.DELETE, "/**").hasRole("USER")
                 .antMatchers(HttpMethod.POST, "/**").hasRole("USER")
-                .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .and()
                 .csrf().disable()
                 .formLogin().disable();

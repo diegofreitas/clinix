@@ -8,6 +8,7 @@ import { User } from '../model/user.model';
   providedIn: 'root'
 })
 export class AuthService {
+  
 
   authenticated: boolean = false;
   credentials: User;
@@ -27,6 +28,23 @@ export class AuthService {
         (err) => {
           console.error(err);
           reject("auth-failed");
+        }
+      );
+    });
+  }
+
+  registerAccount(username: string, password: string) {
+    return new Promise((resolve, reject) => {
+      this.http.post(ENV.host+'register-account', {
+        username: username,
+        password: password
+      }).subscribe(
+        (res: any) => {
+          resolve("OK");
+        },
+        (err) => {
+          console.error(err);
+          reject("register-failed");
         }
       );
     });
