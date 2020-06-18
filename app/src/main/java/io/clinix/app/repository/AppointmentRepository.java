@@ -1,13 +1,17 @@
 package io.clinix.app.repository;
 
+import io.clinix.app.model.Appointment;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 
-import io.clinix.app.model.Doctor;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+public interface AppointmentRepository extends CrudRepository<Appointment, Long> {
 
-
-@RepositoryRestResource(collectionResourceRel = "Appointment", path = "Appointments")
-public interface AppointmentRepository extends PagingAndSortingRepository<Doctor, Long> {
+    @Query("SELECT " +
+            "new io.clinix.app.repository.AppointmentVO(" +
+            "a.id,a.doctor.name, a.doctor.speciality, a.patient.name,a.schedule" +
+            ") FROM Appointment a")
+    List<AppointmentVO> retrieveAll();
 
 }
