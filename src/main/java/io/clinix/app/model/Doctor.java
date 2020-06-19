@@ -1,11 +1,14 @@
 package io.clinix.app.model;
 
+import lombok.Builder;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Builder
 public class Doctor {
 
     @Id
