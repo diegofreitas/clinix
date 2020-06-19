@@ -1,1 +1,7 @@
-<p>appointment works!</p>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <mat-card fxLayout="column" *ngFor="let item of appointments">
+        <div>Doutor: {{item.doctorName}} - {{item.speciality}}</div>
+        <div>Paciente: {{item.patientName}}</div>
+        <div>Quando: {{item.schedule | date: 'd/M/yy, H:mm'}}</div>
+    </mat-card>
+</div>

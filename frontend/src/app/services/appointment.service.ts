@@ -5,7 +5,7 @@ import { environment as ENV } from '../../environments/environment.prod';
 export interface AppointmentView {
   appointmentId: number;
   doctorName:string;
-  doctorSpeciality: string;
+  speciality: string;
   patientName: string;
   schedule:Date;
 } 
