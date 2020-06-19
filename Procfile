@@ -1,0 +1,1 @@
+web: bin/run_cloud_sql_proxy &>null && java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/*.jar
