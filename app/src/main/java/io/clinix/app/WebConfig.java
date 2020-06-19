@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration()
 @EnableWebMvc
-@Profile("!gcp")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
