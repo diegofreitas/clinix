@@ -1,9 +1,8 @@
-<a mat-raised-button routerLink="/appointment" routerLinkActive="active">Criar agendamento</a>
 <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-    
-    <mat-card fxLayout="column" *ngFor="let item of appointments" fxLayoutGap="20px">
+    <a class="mat-raised-button open-form" routerLink="/appointment" routerLinkActive="active">Criar agendamento</a>
+    <mat-card class="item" fxLayout="column" *ngFor="let item of appointments">
+        <div class="item-header">{{item.schedule | date: 'd/M/yy, H:mm'}}</div>
+        <h3>{{item.patientName}}</h3>
         <div>Doutor: {{item.doctorName}} - {{item.speciality}}</div>
-        <div>Paciente: {{item.patientName}}</div>
-        <div>Quando: {{item.schedule | date: 'd/M/yy, H:mm'}}</div>
     </mat-card>
 </div>

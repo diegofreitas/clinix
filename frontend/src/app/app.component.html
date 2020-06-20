@@ -1,13 +1,13 @@
 <!-- Toolbar -->
-<mat-toolbar color="primary" class="app-header">
+<mat-toolbar color="primary" class="app-header" fxLayoutGap="10px">
   <div>CLINIX</div>
-  <div *ngIf="authService.authenticated">
+  <span *ngIf="authService.authenticated">
     <a mat-button mat-raised-button routerLink="appointments" routerLinkActive="active">Agendamentos</a>
-  </div>
-  <span class="nav-tool-items" *ngIf="!authService.authenticated">
+  </span>
+  <span *ngIf="!authService.authenticated">
     <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
     <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
   </span>
 </mat-toolbar>
 
-<router-outlet fxLayout="row" fxLayoutAlign="center center"></router-outlet>
+<router-outlet class="main-content"></router-outlet>
