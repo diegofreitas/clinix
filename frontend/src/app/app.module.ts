@@ -27,6 +27,8 @@ import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { AppointmentService } from './services/appointment.service';
+import { AppointmentFormComponent } from './components/appointment-form/appointment-form.component';
+import { NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { AppointmentService } from './services/appointment.service';
     AppComponent,
     LogInComponent,
     RegisterComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    AppointmentFormComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +47,10 @@ import { AppointmentService } from './services/appointment.service';
     AngularMaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxMatNativeDateModule
   ],
-  providers: [AuthService, AppointmentService,
+  providers: [AuthService, AppointmentService,  NgxMatNativeDateModule,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

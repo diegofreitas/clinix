@@ -79,7 +79,10 @@ import {
 import {
    MatCardModule
 } from '@angular/material/card';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOption, MatOptionModule } from '@angular/material/core';
+
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+
 
 @NgModule({
    imports: [
@@ -101,7 +104,9 @@ import { MatNativeDateModule } from '@angular/material/core';
       MatChipsModule,
       MatTooltipModule,
       MatTableModule,
-      MatPaginatorModule
+      MatPaginatorModule,
+      NgxMatTimepickerModule,
+      MatOptionModule
    
    ],
    exports: [
@@ -116,15 +121,19 @@ import { MatNativeDateModule } from '@angular/material/core';
       MatInputModule,
       MatFormFieldModule,
       MatSelectModule,
+      MatOptionModule,
       MatRadioModule,
       MatDatepickerModule,
       MatChipsModule,
       MatTooltipModule,
       MatTableModule,
-      MatPaginatorModule
+      MatPaginatorModule,
+      NgxMatDatetimePickerModule,
    ],
    providers: [
       MatDatepickerModule,
+      NgxMatDatetimePickerModule,
+     
    ]
 })
 

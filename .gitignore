@@ -30,3 +30,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+cloud_sql_proxy
+
+clinixapp.json

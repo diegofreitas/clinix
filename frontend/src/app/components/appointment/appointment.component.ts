@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppointmentService, AppointmentView } from '../../services/appointment.service';
+import { AppointmentService, AppointmentItemDTO } from '../../services/appointment.service';
 
 @Component({
   selector: 'app-appointment',
@@ -8,7 +8,7 @@ import { AppointmentService, AppointmentView } from '../../services/appointment.
 })
 export class AppointmentComponent implements OnInit {
 
-  appointments: AppointmentView[] = [];
+  appointments: AppointmentItemDTO[] = [];
 
   constructor(private appointmentService:AppointmentService) { }
 
