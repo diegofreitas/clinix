@@ -28,6 +28,8 @@ import { AppointmentFormComponent } from './components/appointment-form/appointm
 import { NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { DoctorService } from './services/doctor.service';
 import { PatientService } from './services/patient.service';
+import { DoctorsComponent } from './components/doctors/doctors.component';
+import { DoctorFormComponent } from './components/doctor-form/doctor-form.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { PatientService } from './services/patient.service';
     LogInComponent,
     RegisterComponent,
     AppointmentComponent,
-    AppointmentFormComponent
+    AppointmentFormComponent,
+    DoctorsComponent,
+    DoctorFormComponent
   ],
   imports: [
     BrowserModule,

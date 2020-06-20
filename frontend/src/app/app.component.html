@@ -3,6 +3,7 @@
   <div>CLINIX</div>
   <span *ngIf="authService.authenticated">
     <a mat-button mat-raised-button routerLink="appointments" routerLinkActive="active">Agendamentos</a>
+    <a mat-button mat-raised-button routerLink="doctors" routerLinkActive="active">Doctors</a>
   </span>
   <span *ngIf="!authService.authenticated">
     <a mat-button routerLink="login" routerLinkActive="active">Log in</a>

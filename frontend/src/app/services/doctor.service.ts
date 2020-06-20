@@ -24,4 +24,18 @@ export class DoctorService {
       );
     });
   }
+
+  createDoctor(newDoctor: DoctorDTO): Promise<DoctorDTO> {
+    return new Promise((resolve, reject) => {
+      this.http.post(ENV.host+'doctors', newDoctor).subscribe(
+        (res: DoctorDTO) => {
+          resolve(res);
+        },
+        (err) => {
+          console.error(err);
+          reject("error");
+        }
+      );
+    });
+  }
 }

@@ -1,0 +1,7 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <a class="mat-raised-button open-form" routerLink="/doctor" routerLinkActive="active">New doctor</a>
+    <mat-card class="item" fxLayout="column" *ngFor="let item of doctors">
+        <div class="item-header">{{item.name}}</div>
+        <div>Speciality: - {{item.speciality}}</div>
+    </mat-card>
+</div>
