@@ -1,5 +1,6 @@
 package io.clinix.app.controller;
 
+import io.clinix.app.model.Appointment;
 import io.clinix.app.repository.AppointmentFormDTO;
 import io.clinix.app.repository.AppointmentRepository;
 import io.clinix.app.repository.AppointmentItemDTO;
@@ -29,7 +30,7 @@ public class AppointmentController {
     }
 
     @PostMapping("/appointments")
-    private ResponseEntity<Void> createAppointment(@RequestBody AppointmentFormDTO dto) {
+    private ResponseEntity createAppointment(@RequestBody AppointmentFormDTO dto) {
         service.createAppointment(dto);
         return ResponseEntity.ok().build();
     }

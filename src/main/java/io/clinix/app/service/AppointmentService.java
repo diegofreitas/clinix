@@ -20,12 +20,11 @@ public class AppointmentService {
 
     @Transactional(Transactional.TxType.REQUIRED)
     public void createAppointment(AppointmentFormDTO dto) {
-        Appointment appointment = new Appointment();
         Doctor doctor = Doctor.builder().id(dto.getDoctorId()).build();
         Patient patient = Patient.builder().id(dto.getPatientId()).build();
-        appointment.setDoctor(doctor);
-        appointment.setPatient(patient);
-        appointment.setSchedule(dto.getSchedule());
-        appointmentRepository.save(appointment);
+        appointmentRepository.save(Appointment.builder()
+                .doctor(doctor)
+                .patient(patient)
+                .schedule(dto.getSchedule()).build());
     }
 }
