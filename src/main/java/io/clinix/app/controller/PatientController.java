@@ -1,7 +1,7 @@
 package io.clinix.app.controller;
 
-import io.clinix.app.model.Doctor;
-import io.clinix.app.repository.DoctorRepository;
+import io.clinix.app.model.Patient;
+import io.clinix.app.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class PatientController {
 
     @Autowired
-    private DoctorRepository repository;
+    private PatientRepository repository;
 
-    @GetMapping("/doctors")
-    Iterable<Doctor> retrieveAll() {
+    @GetMapping("/patients")
+    Iterable<Patient> retrieveAll() {
         return repository.findAll();
     }
 
