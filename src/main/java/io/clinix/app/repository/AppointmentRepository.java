@@ -13,7 +13,7 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Long>
     @Query("SELECT " +
             "new io.clinix.app.repository.AppointmentItemDTO(" +
             "a.id,a.doctor.name, a.doctor.speciality, a.patient.name,a.schedule" +
-            ") FROM Appointment a")
+            ") FROM Appointment a order by a.schedule desc")
     List<AppointmentItemDTO> retrieveAll();
 
 }
