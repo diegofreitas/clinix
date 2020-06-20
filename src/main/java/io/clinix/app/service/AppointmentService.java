@@ -32,6 +32,7 @@ public class AppointmentService {
         Patient patient = Patient.builder().id(dto.getPatientId()).build();
         appointment.setDoctor(doctor);
         appointment.setPatient(patient);
+        appointment.setSchedule(dto.getSchedule());
         appointmentRepository.save(appointment);
     }
 }
