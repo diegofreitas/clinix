@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AppointmentService } from '../../services/appointment.service';
+import { PatientDTO } from 'src/app/services/patient.service';
+import { DoctorDTO } from 'src/app/services/doctor.service';
+import { DoctorService } from '../../services/doctor.service';
+import { PatientService } from '../../services/patient.service';
 
 @Component({
   selector: 'app-appointment-form',
   templateUrl: './appointment-form.component.html',
   styleUrls: ['./appointment-form.component.css']
 })
-export class AppointmentFormComponent {
+export class AppointmentFormComponent implements OnInit{
 
   appointmentForm = new FormGroup({
     doctorId: new FormControl(''),
@@ -16,32 +20,28 @@ export class AppointmentFormComponent {
     schedule: new FormControl('')
   });
 
-  doctors = [
-    {
-      id: 1,
-      name: "asdfasdf",
-      speciality: "asdfasd"
-    }
-  ]
+  doctors: DoctorDTO[];
 
-  patients = [
-    {
-      id: 1,
-      name: "diego"
-    }
-  ]
+  patients: PatientDTO[];
 
-  constructor(private appointmentService: AppointmentService, private router: Router) { 
+  constructor(private appointmentService: AppointmentService, private doctorService: DoctorService, private patientService: PatientService, private router: Router) { 
 
   }
 
+  ngOnInit(): void {
+    this.doctorService.retrieveAll().then((value) =>{
+      this.doctors = value;
+    });
+    this.patientService.retrieveAll().then((value) =>{
+      this.patients = value;
+    });
+  }
+
   createAppointment() {
-    console.log(Date.parse(this.appointmentForm.value.schedule));
-    console.log(this.appointmentForm.value.schedule);
     this.appointmentService.createAppointment({
       doctorId: this.appointmentForm.value.doctorId,
       patientId: this.appointmentForm.value.patientId,
-      schedule: Date.parse(this.appointmentForm.value.schedule)
+      schedule: Date.parse(this.appointmentForm.value.schedule) // implement parser on sping side to avoid this object creation
     })
     .then(()=> {
       this.router.navigate(['appointments']);

@@ -7,12 +7,9 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-
-
 /* Angular Material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 /* FormsModule */
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +26,8 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
 import { AppointmentService } from './services/appointment.service';
 import { AppointmentFormComponent } from './components/appointment-form/appointment-form.component';
 import { NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { DoctorService } from './services/doctor.service';
+import { PatientService } from './services/patient.service';
 
 
 @NgModule({
@@ -50,7 +49,12 @@ import { NgxMatNativeDateModule } from '@angular-material-components/datetime-pi
     FlexLayoutModule,
     NgxMatNativeDateModule
   ],
-  providers: [AuthService, AppointmentService,  NgxMatNativeDateModule,
+  providers: [
+    AuthService, 
+    AppointmentService, 
+    DoctorService, 
+    PatientService, 
+    NgxMatNativeDateModule,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
