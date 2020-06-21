@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  host: 'http://localhost:8080/'
+  host: 'https://pacific-citadel-30867.herokuapp.com/'
 };

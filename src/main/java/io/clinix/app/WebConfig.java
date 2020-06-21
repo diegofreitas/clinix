@@ -13,7 +13,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200", "https://pacific-citadel-30867.herokuapp.com")
+                .allowedOrigins("http://localhost:4200", "https://frontend-dot-clinixapp.rj.r.appspot.com")
                 .allowedHeaders("*")
                 .allowedMethods("*")
                 .allowCredentials(true);
