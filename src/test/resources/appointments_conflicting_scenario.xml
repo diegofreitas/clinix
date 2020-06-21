@@ -6,14 +6,12 @@
 
     <doctor id="2" name="Doctor 2" speciality="Speciality 2"/>
     <patient id="2" name="Patient 2"/>
-    <appointment id="2" doctor_id="1" patient_id="1" schedule="2020-06-20 02:00:00"/>
+    <appointment id="2" doctor_id="2" patient_id="1" schedule="2020-06-20 02:00:00"/>
 
 
     <doctor id="3" name="Doctor 3" speciality="Speciality 3"/>
     <patient id="3" name="Patient 3"/>
     <appointment id="3" doctor_id="2" patient_id="3" schedule="2020-06-21 02:00:00"/>
 
-
-    <appointment id="4" doctor_id="1" patient_id="1" schedule="2020-06-21 00:00:00"/>
 
 </dataset>

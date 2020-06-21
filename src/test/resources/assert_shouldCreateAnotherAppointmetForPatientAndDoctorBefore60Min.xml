@@ -1,0 +1,4 @@
+<dataset>
+    <appointment id="2" doctor_id="1" patient_id="1" schedule="2020-06-20 23:00:00"/>
+    <appointment id="2000" doctor_id="1" patient_id="1" schedule="2020-06-21 00:00:00"/>
+</dataset>

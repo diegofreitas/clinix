@@ -3,12 +3,12 @@ package io.clinix.app.repository;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
 public class AppointmentFormDTO {
     private Long doctorId;
     private Long  patientId;
-    private Calendar schedule;
+    private LocalDateTime schedule;
 }

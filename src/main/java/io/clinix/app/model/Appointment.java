@@ -2,6 +2,7 @@ package io.clinix.app.model;
 
 import lombok.*;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 
@@ -19,6 +20,6 @@ public class Appointment {
     private Doctor doctor;
     @ManyToOne
     private Patient patient;
-    private Calendar schedule;
+    private LocalDateTime schedule;
 
 }
