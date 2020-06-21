@@ -1,11 +1,12 @@
 package io.clinix.app.repository;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class AppointmentFormDTO {
     private Long doctorId;
