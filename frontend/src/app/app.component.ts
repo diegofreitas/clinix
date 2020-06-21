@@ -1,7 +1,8 @@
 import { Component, OnInit, ApplicationRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { interval } from 'rxjs';
+
 import { AuthService } from './services/auth.service';
+import { NotificationDataService } from './services/notification-data.service';
+import { MatSnackBarRef, SimpleSnackBar, MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,19 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'Clinix';
-  apiData: any;
 
-  constructor(
-    private http: HttpClient,
-    private appRef: ApplicationRef,
-    public authService: AuthService
-
-  ) {
+  constructor(public authService: AuthService, notficationService: NotificationDataService, private _snackBar: MatSnackBar) {
+    notficationService.notificationData.subscribe((data) => {
+      if(data !== null) {
+        this._snackBar.open(data.message, 'Error', {
+          duration: 5000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: 'error'
+        });
+      }
+    }); 
+    
   }
 
 

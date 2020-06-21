@@ -21,7 +21,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
-import { AuthInterceptor } from './services/auth.interceptor';
+import { CustomHttpInterceptor } from './services/custom-http.interceptor';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { AppointmentService } from './services/appointment.service';
 import { AppointmentFormComponent } from './components/appointment-form/appointment-form.component';
@@ -61,7 +61,7 @@ import { DoctorFormComponent } from './components/doctor-form/doctor-form.compon
     NgxMatNativeDateModule,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
+      useClass: CustomHttpInterceptor,
       multi: true,
     }],
   bootstrap: [AppComponent],

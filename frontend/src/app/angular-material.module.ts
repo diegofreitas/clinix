@@ -81,12 +81,16 @@ import {
 } from '@angular/material/card';
 import { MatNativeDateModule, MatOption, MatOptionModule } from '@angular/material/core';
 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 
 
 @NgModule({
    imports: [
       MatCardModule,
+      MatSnackBarModule,
       CommonModule,
       MatButtonModule,
       MatToolbarModule,
