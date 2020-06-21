@@ -38,11 +38,7 @@ export class AppointmentFormComponent implements OnInit{
   }
 
   createAppointment() {
-    this.appointmentService.createAppointment({
-      doctorId: this.appointmentForm.value.doctorId,
-      patientId: this.appointmentForm.value.patientId,
-      schedule: Date.parse(this.appointmentForm.value.schedule) // implement parser on sping side to avoid this object creation
-    })
+    this.appointmentService.createAppointment(this.appointmentForm.value)
     .then(()=> {
       this.router.navigate(['appointments']);
     });

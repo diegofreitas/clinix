@@ -13,7 +13,7 @@ export interface AppointmentItemDTO{
 export interface AppointmentFormDTO {
   doctorId: number;
   patientId: number;
-  schedule: number;
+  schedule: Date;
 }
 
 @Injectable({
@@ -38,6 +38,8 @@ export class AppointmentService {
   }
 
   createAppointment(newAppointment: AppointmentFormDTO): Promise<AppointmentFormDTO> {
+    newAppointment.schedule.setSeconds(0);
+    newAppointment.schedule.setMilliseconds(0);
     return new Promise((resolve, reject) => {
       this.http.post(ENV.host+'appointments', newAppointment).subscribe(
         (res: AppointmentFormDTO) => {
