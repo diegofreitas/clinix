@@ -2,6 +2,7 @@ package io.clinix.app.model;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 
@@ -17,9 +18,14 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @ManyToOne
+    @NotNull
     private Doctor doctor;
+
     @ManyToOne
+    @NotNull
     private Patient patient;
+    
+    @NotNull
     private LocalDateTime schedule;
 
 }
