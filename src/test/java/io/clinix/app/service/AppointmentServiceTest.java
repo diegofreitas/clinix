@@ -62,5 +62,75 @@ public class AppointmentServiceTest {
         );
     }
 
+    @Test
+    @DatabaseSetup(value = "/appointments_conflicting_scenario.xml", type = DatabaseOperation.INSERT)
+    public void shouldNotCreateAppointmetForDoctorSameDateTime() {
+        exceptionRule.expect(IllegalStateException.class);
+        exceptionRule.expectMessage("Conflinting appointment");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dt = LocalDateTime.parse("2020-06-20 02:00:00", formatter);
+        Calendar scheduleTime = GregorianCalendar.from(dt.atZone(ZoneId.systemDefault()));
+        appointmentService.createAppointment(
+                AppointmentFormDTO.builder()
+                        .doctorId(2l)
+                        .patientId(2l)
+                        .schedule(scheduleTime).build()
+        );
+    }
+
+
+    @Test
+    @DatabaseSetup(value = "/appointments_conflicting_scenario.xml", type = DatabaseOperation.INSERT)
+    public void shouldNotCreateAppointmetForPatientSameDateTime() {
+        exceptionRule.expect(IllegalStateException.class);
+        exceptionRule.expectMessage("Conflinting appointment");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dt = LocalDateTime.parse("2020-06-21 02:00:00", formatter);
+        Calendar scheduleTime = GregorianCalendar.from(dt.atZone(ZoneId.systemDefault()));
+        appointmentService.createAppointment(
+                AppointmentFormDTO.builder()
+                        .doctorId(3l)
+                        .patientId(3l)
+                        .schedule(scheduleTime).build()
+        );
+    }
+
+    @Test
+    @DatabaseSetup(value = "/appointments_conflicting_scenario.xml", type = DatabaseOperation.INSERT)
+    public void shouldCreateAnotherAppointmetForPatientAndDoctorAfter60Min() {
+        exceptionRule.expect(IllegalStateException.class);
+        exceptionRule.expectMessage("Conflinting appointment");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dt = LocalDateTime.parse("2020-06-21 01:00:00", formatter);
+        Calendar scheduleTime = GregorianCalendar.from(dt.atZone(ZoneId.systemDefault()));
+        appointmentService.createAppointment(
+                AppointmentFormDTO.builder()
+                        .doctorId(1l)
+                        .patientId(1l)
+                        .schedule(scheduleTime).build()
+        );
+    }
+
+    @Test
+    @DatabaseSetup(value = "/appointments_conflicting_scenario.xml", type = DatabaseOperation.INSERT)
+    public void shouldCreateAnotherAppointmetForPatientAndDoctorBefore60Min() {
+        exceptionRule.expect(IllegalStateException.class);
+        exceptionRule.expectMessage("Conflinting appointment");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dt = LocalDateTime.parse("2020-06-20 23:00:00", formatter);
+        Calendar scheduleTime = GregorianCalendar.from(dt.atZone(ZoneId.systemDefault()));
+        appointmentService.createAppointment(
+                AppointmentFormDTO.builder()
+                        .doctorId(1l)
+                        .patientId(1l)
+                        .schedule(scheduleTime).build()
+        );
+    }
+
+
 }
 
