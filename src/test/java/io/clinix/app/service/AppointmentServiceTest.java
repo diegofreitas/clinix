@@ -46,7 +46,7 @@ public class AppointmentServiceTest {
     @Test
     @DatabaseSetup(value = "/appointments_conflicting_scenario.xml", type = DatabaseOperation.CLEAN_INSERT)
     public void shouldNotCreateAppointmetForPatientAndDoctorSameDateTime() {
-        exceptionRule.expect(IllegalStateException.class);
+        exceptionRule.expect(ConflictingAppointmetnException.class);
         exceptionRule.expectMessage("Conflinting appointment");
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -62,7 +62,7 @@ public class AppointmentServiceTest {
     @Test
     @DatabaseSetup(value = "/appointments_conflicting_scenario.xml", type = DatabaseOperation.CLEAN_INSERT)
     public void shouldNotCreateAppointmetForDoctorSameDateTime() {
-        exceptionRule.expect(IllegalStateException.class);
+        exceptionRule.expect(ConflictingAppointmetnException.class);
         exceptionRule.expectMessage("Conflinting appointment");
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -79,7 +79,7 @@ public class AppointmentServiceTest {
     @Test
     @DatabaseSetup(value = "/appointments_conflicting_scenario.xml", type = DatabaseOperation.CLEAN_INSERT)
     public void shouldNotCreateAppointmetForPatientSameDateTime() {
-        exceptionRule.expect(IllegalStateException.class);
+        exceptionRule.expect(ConflictingAppointmetnException.class);
         exceptionRule.expectMessage("Conflinting appointment");
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

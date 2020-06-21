@@ -26,14 +26,14 @@ public class AppointmentService {
                 dto.getSchedule().minusMinutes(59).minusSeconds(59), dto.getSchedule().plusMinutes(59).plusSeconds(59), doctor
         );
         if(!doctorAppointments.isEmpty()) {
-            throw new IllegalStateException("Conflinting appointment");
+            throw new ConflictingAppointmetnException("Conflinting appointment");
         }
 
         List<Appointment> patientsAppointment = appointmentRepository.findAppointmentsByScheduleBetweenAndPatient(
                 dto.getSchedule().minusMinutes(59).minusSeconds(59), dto.getSchedule().plusMinutes(59).plusSeconds(59), patient
         );
         if(!patientsAppointment.isEmpty()) {
-            throw new IllegalStateException("Conflinting appointment");
+            throw new ConflictingAppointmetnException("Conflinting appointment");
         }
         appointmentRepository.save(Appointment.builder()
                 .doctor(doctor)
